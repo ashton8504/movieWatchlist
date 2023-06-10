@@ -1,5 +1,5 @@
 const APIKEY = '5e713387';
-
+console.log(APIKEY)
 const headerContainer = document.querySelector('.header-container');
 const watchlistLink = document.querySelector('.watchlist-link');
 const searchIcon = document.querySelector('.search-icon');
@@ -15,7 +15,8 @@ function performMovieSearch() {
   // Make the API request
   fetch(`https://www.omdbapi.com/?s=${encodeURIComponent(searchTerm)}&apikey=${APIKEY}`)
     .then(response => response.json())
-    .then(data => {
+      .then(data => {
+        console.log(data)
       if (data.Response === 'True') {
         const movies = data.Search; // Retrieve the movies array from the API response
 
@@ -30,7 +31,7 @@ function performMovieSearch() {
 
         // Wait for all movie promises to resolve
         Promise.all(moviePromises)
-          .then(movieData => {
+            .then(movieData => {
             // Render each movie
             movieData.forEach(movie => {
               const movieCard = document.createElement('div');
@@ -66,7 +67,31 @@ function performMovieSearch() {
 
               const addToWatchlistButton = document.createElement('button');
               addToWatchlistButton.classList.add('add-to-watchlist');
-              addToWatchlistButton.textContent = 'Add to Watchlist';
+                addToWatchlistButton.textContent = 'Add to Watchlist';
+                
+            const imdbLink = document.createElement('a');
+            imdbLink.href = `https://www.imdb.com/title/${movie.imdbID}`; // Construct the IMDb link using the IMDb ID
+            imdbLink.target = '_blank'; // Open the link in a new tab
+            imdbLink.rel = 'noopener noreferrer'; // Recommended security attribute for opening links in a new tab
+            imdbLink.textContent = 'View on IMDb';
+
+// Apply styling to the IMDb link
+imdbLink.style.color = 'white';
+imdbLink.style.textDecoration = 'none';
+
+// Add hover effect to the IMDb link
+imdbLink.addEventListener('mouseover', function () {
+  imdbLink.style.textDecoration = 'underline';
+});
+imdbLink.addEventListener('mouseout', function () {
+  imdbLink.style.textDecoration = 'none';
+});
+
+// Append the IMDb link to the movie details
+movieDetails.appendChild(imdbLink);
+
+      // Append the IMDb link to the movie details
+      movieDetails.appendChild(imdbLink);
 
               // Add click event listener to the "Add to Watchlist" button
               addToWatchlistButton.addEventListener('click', function () {
