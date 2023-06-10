@@ -113,6 +113,23 @@ searchInput.addEventListener('keypress', function (event) {
   }
 });
 
+// Function to show a modal with the specified message
+function showModal(message) {
+    const modal = document.getElementById('modal');
+    const modalContent = document.getElementById('modal-content');
+    const modalMessage = document.getElementById('modal-message');
+  
+    modalMessage.textContent = message;
+    modal.style.display = 'block';
+  
+    // Close the modal when the user clicks anywhere outside of it
+    window.onclick = function(event) {
+      if (event.target === modal) {
+        modal.style.display = 'none';
+      }
+    };
+  }
+
 // Function to add a movie to the watchlist
 function addToWatchlist(movie) {
   const watchlist = JSON.parse(localStorage.getItem('watchlist')) || []; // Retrieve existing watchlist from local storage or create a new empty array
@@ -123,8 +140,8 @@ function addToWatchlist(movie) {
   if (!isMovieInWatchlist) {
     watchlist.push(movie); // Add the movie to the watchlist array
     localStorage.setItem('watchlist', JSON.stringify(watchlist)); // Save the updated watchlist to local storage
-    alert('Movie added to watchlist!');
+    showModal('Movie added to watchlist!');
   } else {
-    alert('Movie is already in the watchlist!');
+    showModal('Movie is already in the watchlist!');
   }
 }

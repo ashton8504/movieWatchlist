@@ -33,5 +33,36 @@
         <p>Start Exploring</p>
     </div>
 
+    <!-- HTML structure for the modal -->
+<div id="modal" class="modal">
+    <div id="modal-content" class="modal-content">
+      <p id="modal-message" class="modal-message"></p>
+    </div>
+  </div>
+  
+  <!-- CSS styles for the modal -->
+  <style>
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+  
+    .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 300px;
+      text-align: center;
+    }
+  </style>
+  
 </body>
 </html>
