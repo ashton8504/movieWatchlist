@@ -124,3 +124,27 @@ $(document).ready(function() {
       dots: true
     });
   });
+
+//   Dark Mode
+
+const body = document.querySelector('body');
+const darkModeToggle = document.getElementById('darkModeToggle');
+
+// Check if dark mode is enabled
+const isDarkMode = localStorage.getItem('darkMode') === 'true';
+
+// Apply dark mode class to body if enabled
+if (isDarkMode) {
+  body.classList.add('dark-mode');
+}
+
+// Toggle dark mode
+function toggleDarkMode() {
+  body.classList.toggle('dark-mode');
+  // Save the dark mode preference to local storage
+  const isDarkModeEnabled = body.classList.contains('dark-mode');
+  localStorage.setItem('darkMode', isDarkModeEnabled);
+}
+
+// Event listener for dark mode toggle button
+darkModeToggle.addEventListener('click', toggleDarkMode);

@@ -5,10 +5,8 @@
   body {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Inter', sans-serif;
   }
-  
-  /* Header */
   
   .header {
     position: relative;
@@ -91,11 +89,6 @@
   
   /* Content */
   
-  .content {
-    margin-top: 20px;
-    padding: 20px;
-  }
-  
   h1 {
     font-family: 'Inter', sans-serif;
     font-style: normal;
@@ -120,14 +113,12 @@
     color: #dddddd;
   }
   
-
-.header-container {
+  .header-container {
     display: flex;
     flex-direction: column;
-    
-}
-
-.content {
+  }
+  
+  .content {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -145,20 +136,16 @@
   }
   
   .content p {
-    font-size: 24px;
+    font-size: 20px;
     color: #333;
     font-weight: bold;
   }
   
-
-/* Movie Card */
-
-/* Movie Card styles */
-/* Movie Card styles */
-.movie-card {
+  /* Movie Card styles */
+  .movie-card {
     display: flex;
     margin: 20px auto;
-    border: 1px solid #ccc;
+    border: 2px solid #ccc;
     padding: 10px;
     width: 800px;
     max-width: 100%;
@@ -184,10 +171,12 @@
   }
   
   .movie-title {
-    font-size: 20px;
+    font-size: 28px;
     font-weight: bold;
     margin: 0 0 10px;
-    color: #333;
+    color: #333 !important;
+    /* Improved font */
+    font-family: 'Inter', sans-serif;
   }
   
   .movie-rating {
@@ -221,43 +210,77 @@
   
   .movie-description {
     margin: 0;
-    font-size: 14px;
-    color: #555;
+    font-size: 14px !important;
+    color: #555 !important;
+    /* Improved font */
+    font-family: 'Inter', sans-serif !important;
   }
   
-  /* Carousel */
+  /* Different font sizes within movie card container */
+  .movie-rating {
+    font-size: 14px !important;
+  }
+  
+  .movie-length,
+  .movie-genre {
+    font-size: 14px !important;
+  }
+  
 
-  .carousel-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-    padding: 20px;
-    background-color: #f9f9f9;
-  }
-  
-  .carousel {
-    width: 800px; /* Adjust the width as desired */
-    max-width: 100%;
-  }
-  
-  .carousel .item {
-    text-align: center;
-  }
-  
-  .carousel blockquote {
-    margin: 0;
-    padding: 0;
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
-  }
-  
-  .carousel cite {
-    display: block;
-    margin-top: 10px;
-    font-size: 18px;
-    font-weight: 600;
-    color: #777;
+  /* Design for mobile */
+
+
+/* Responsive Adjustments */
+@media (max-width: 480px) {
+    .header-container {
+      font-size: 24px;
+    }
+    
+    .search-bar {
+      width: 90%;
+      max-width: 300px;
+    }
+    
+    .search-button {
+      padding: 9px 11px;
+      font-size: 14px;
+    }
+    
+    .content {
+      padding: 10px;
+    }
+    
+    .movie-card {
+      width: 90%;
+      flex-direction: column;
+    }
+    
+    .movie-poster img {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    
+    .movie-details {
+      padding: 5px;
+    }
+    
+    .movie-title {
+      font-size: 24px;
+      margin-bottom: 5px;
+    }
+    
+    .movie-description {
+      font-size: 14px !important;
+    }
+    
+    .movie-rating,
+    .movie-length,
+    .movie-genre {
+      font-size: 14px !important;
+    }
+    
+    .add-to-watchlist {
+      margin-top: 5px;
+    }
   }
   
