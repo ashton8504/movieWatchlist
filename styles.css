@@ -140,8 +140,8 @@
     color: #333;
     font-weight: bold;
   }
-
-  .watchlist-section{
+  
+  .watchlist-section {
     font-size: 20px;
     color: #333;
     font-weight: bold;
@@ -200,7 +200,8 @@
     color: #999;
   }
   
-  .add-to-watchlist,.remove-from-watchlist {
+  .add-to-watchlist,
+  .remove-from-watchlist {
     padding: 8px 16px;
     background-color: #007bff;
     color: #fff;
@@ -212,7 +213,8 @@
     margin-top: 10px;
   }
   
-  .add-to-watchlist:hover, .remove-from-watchlist:hover {
+  .add-to-watchlist:hover,
+  .remove-from-watchlist:hover {
     background-color: #0056b3;
   }
   
@@ -234,59 +236,57 @@
     font-size: 14px !important;
   }
   
-
   /* Design for mobile */
-
-
-/* Responsive Adjustments */
-@media (max-width: 480px) {
+  
+  /* Responsive Adjustments */
+  @media (max-width: 480px) {
     .header-container {
       font-size: 24px;
     }
-    
+  
     .search-bar {
       width: 90%;
       max-width: 300px;
     }
-    
+  
     .search-button {
       padding: 9px 11px;
       font-size: 14px;
     }
-    
+  
     .content {
       padding: 10px;
     }
-    
+  
     .movie-card {
       width: 90%;
       flex-direction: column;
     }
-    
+  
     .movie-poster img {
       width: 100%;
       margin-bottom: 10px;
     }
-    
+  
     .movie-details {
       padding: 5px;
     }
-    
+  
     .movie-title {
       font-size: 24px;
       margin-bottom: 5px;
     }
-    
+  
     .movie-description {
       font-size: 14px !important;
     }
-    
+  
     .movie-rating,
     .movie-length,
     .movie-genre {
       font-size: 14px !important;
     }
-    
+  
     .add-to-watchlist {
       margin-top: 5px;
     }

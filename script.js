@@ -122,6 +122,10 @@ function showModal(message) {
     modalMessage.textContent = message;
     modal.style.display = 'block';
   
+    setTimeout(() => {
+      modal.style.display = 'none';
+    }, 1000);
+  
     // Close the modal when the user clicks anywhere outside of it
     window.onclick = function(event) {
       if (event.target === modal) {
@@ -129,7 +133,7 @@ function showModal(message) {
       }
     };
   }
-
+  
 // Function to add a movie to the watchlist
 function addToWatchlist(movie) {
   const watchlist = JSON.parse(localStorage.getItem('watchlist')) || []; // Retrieve existing watchlist from local storage or create a new empty array
