@@ -146,6 +146,10 @@ function showModal(message) {
   
     modalMessage.textContent = message;
     modal.style.display = 'block';
+
+    setTimeout(() => {
+        modalMessage.textContent = message;
+      }, 100);
   
     setTimeout(() => {
       modal.style.display = 'none';
