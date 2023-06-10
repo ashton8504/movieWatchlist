@@ -192,7 +192,7 @@
     color: #999;
   }
   
-  .add-to-watchlist {
+  .add-to-watchlist,.remove-from-watchlist {
     padding: 8px 16px;
     background-color: #007bff;
     color: #fff;
@@ -204,7 +204,7 @@
     margin-top: 10px;
   }
   
-  .add-to-watchlist:hover {
+  .add-to-watchlist:hover, .remove-from-watchlist:hover {
     background-color: #0056b3;
   }
   

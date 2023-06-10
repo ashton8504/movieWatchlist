@@ -1,5 +1,4 @@
 const APIKEY = '5e713387';
-console.log(APIKEY);
 
 const headerContainer = document.querySelector('.header-container');
 const watchlistLink = document.querySelector('.watchlist-link');
@@ -10,95 +9,99 @@ const contentSection = document.querySelector('.content');
 const movieIcon = document.querySelector('.movieIcon');
 
 // Function to perform the movie search
-// Function to perform the movie search
 function performMovieSearch() {
-    const searchTerm = searchInput.value.trim(); // Get the search term from the input field
-  
-    // Make the API request
-    fetch(`https://www.omdbapi.com/?s=${encodeURIComponent(searchTerm)}&apikey=${APIKEY}`)
-      .then(response => response.json())
-      .then(data => {
-        if (data.Response === 'True') {
-          const movies = data.Search; // Retrieve the movies array from the API response
-  
-          // Clear existing content
-          contentSection.innerHTML = '';
-  
-          // Fetch detailed information for each movie
-          const moviePromises = movies.map(movie => {
-            return fetch(`https://www.omdbapi.com/?i=${encodeURIComponent(movie.imdbID)}&apikey=${APIKEY}`)
-              .then(response => response.json());
-          });
-  
-          // Wait for all movie promises to resolve
-          Promise.all(moviePromises)
-            .then(movieData => {
-              // Render each movie
-              movieData.forEach(movie => {
-                const movieCard = document.createElement('div');
-                movieCard.classList.add('movie-card');
-  
-                const moviePoster = document.createElement('img');
-                moviePoster.src = movie.Poster;
-                moviePoster.alt = movie.Title;
-                moviePoster.classList.add('movie-poster');
-  
-                const movieDetails = document.createElement('div');
-                movieDetails.classList.add('movie-details');
-  
-                const movieTitle = document.createElement('h2');
-                movieTitle.classList.add('movie-title');
-                movieTitle.textContent = movie.Title;
-  
-                const movieRating = document.createElement('p');
-                movieRating.classList.add('movie-rating');
-                movieRating.textContent = `Rating: ${movie.imdbRating}`;
-  
-                const movieLength = document.createElement('p');
-                movieLength.classList.add('movie-length');
-                movieLength.textContent = `Length: ${movie.Runtime}`;
-  
-                const movieGenre = document.createElement('p');
-                movieGenre.classList.add('movie-genre');
-                movieGenre.textContent = `Genre: ${movie.Genre}`;
-  
-                const movieDescription = document.createElement('p');
-                movieDescription.classList.add('movie-description');
-                movieDescription.textContent = movie.Plot;
-  
-                const addToWatchlistButton = document.createElement('button');
-                addToWatchlistButton.classList.add('add-to-watchlist');
-                addToWatchlistButton.textContent = 'Add to Watchlist';
-  
-                // Append elements to the movie card
-                movieDetails.appendChild(movieTitle);
-                movieDetails.appendChild(movieRating);
-                movieDetails.appendChild(movieLength);
-                movieDetails.appendChild(movieGenre);
-                movieDetails.appendChild(movieDescription);
-                movieDetails.appendChild(addToWatchlistButton);
-  
-                movieCard.appendChild(moviePoster);
-                movieCard.appendChild(movieDetails);
-  
-                contentSection.appendChild(movieCard);
+  const searchTerm = searchInput.value.trim(); // Get the search term from the input field
+
+  // Make the API request
+  fetch(`https://www.omdbapi.com/?s=${encodeURIComponent(searchTerm)}&apikey=${APIKEY}`)
+    .then(response => response.json())
+    .then(data => {
+      if (data.Response === 'True') {
+        const movies = data.Search; // Retrieve the movies array from the API response
+
+        // Clear existing content
+        contentSection.innerHTML = '';
+
+        // Fetch detailed information for each movie
+        const moviePromises = movies.map(movie => {
+          return fetch(`https://www.omdbapi.com/?i=${encodeURIComponent(movie.imdbID)}&apikey=${APIKEY}`)
+            .then(response => response.json());
+        });
+
+        // Wait for all movie promises to resolve
+        Promise.all(moviePromises)
+          .then(movieData => {
+            // Render each movie
+            movieData.forEach(movie => {
+              const movieCard = document.createElement('div');
+              movieCard.classList.add('movie-card');
+
+              const moviePoster = document.createElement('img');
+              moviePoster.src = movie.Poster;
+              moviePoster.alt = movie.Title;
+              moviePoster.classList.add('movie-poster');
+
+              const movieDetails = document.createElement('div');
+              movieDetails.classList.add('movie-details');
+
+              const movieTitle = document.createElement('h2');
+              movieTitle.classList.add('movie-title');
+              movieTitle.textContent = movie.Title;
+
+              const movieRating = document.createElement('p');
+              movieRating.classList.add('movie-rating');
+              movieRating.textContent = `Rating: ${movie.imdbRating}`;
+
+              const movieLength = document.createElement('p');
+              movieLength.classList.add('movie-length');
+              movieLength.textContent = `Length: ${movie.Runtime}`;
+
+              const movieGenre = document.createElement('p');
+              movieGenre.classList.add('movie-genre');
+              movieGenre.textContent = `Genre: ${movie.Genre}`;
+
+              const movieDescription = document.createElement('p');
+              movieDescription.classList.add('movie-description');
+              movieDescription.textContent = movie.Plot;
+
+              const addToWatchlistButton = document.createElement('button');
+              addToWatchlistButton.classList.add('add-to-watchlist');
+              addToWatchlistButton.textContent = 'Add to Watchlist';
+
+              // Add click event listener to the "Add to Watchlist" button
+              addToWatchlistButton.addEventListener('click', function () {
+                addToWatchlist(movie);
               });
-            })
-            .catch(error => {
-              console.log('Error fetching movie details:', error);
-              contentSection.innerHTML = 'An error occurred while fetching movie details.';
+
+              // Append elements to the movie card
+              movieDetails.appendChild(movieTitle);
+              movieDetails.appendChild(movieRating);
+              movieDetails.appendChild(movieLength);
+              movieDetails.appendChild(movieGenre);
+              movieDetails.appendChild(movieDescription);
+              movieDetails.appendChild(addToWatchlistButton);
+
+              movieCard.appendChild(moviePoster);
+              movieCard.appendChild(movieDetails);
+
+              contentSection.appendChild(movieCard);
             });
-        } else {
-          // Handle error or no results
-          contentSection.innerHTML = 'No movies found.';
-        }
-      })
-      .catch(error => {
-        console.log('Error fetching movies:', error);
-        contentSection.innerHTML = 'An error occurred while fetching the movies.';
-      });
-  }
-  
+          })
+          .catch(error => {
+            console.log('Error fetching movie details:', error);
+            contentSection.innerHTML = 'An error occurred while fetching movie details.';
+          });
+      } else {
+        // Handle error or no results
+        contentSection.innerHTML = 'No movies found.';
+      }
+    })
+    .catch(error => {
+      console.log('Error fetching movies:', error);
+      contentSection.innerHTML = 'An error occurred while fetching the movies.';
+    });
+}
+
 // Event listener for the search button
 searchButton.addEventListener('click', performMovieSearch);
 
@@ -110,41 +113,18 @@ searchInput.addEventListener('keypress', function (event) {
   }
 });
 
+// Function to add a movie to the watchlist
+function addToWatchlist(movie) {
+  const watchlist = JSON.parse(localStorage.getItem('watchlist')) || []; // Retrieve existing watchlist from local storage or create a new empty array
 
+  // Check if the movie already exists in the watchlist
+  const isMovieInWatchlist = watchlist.some(item => item.imdbID === movie.imdbID);
 
-// Script to run carousel
-$(document).ready(function() {
-    $(".carousel").owlCarousel({
-      items: 1,
-      loop: true,
-      autoplay: true,
-      autoplayTimeout: 5000,
-      autoplayHoverPause: true,
-      nav: false,
-      dots: true
-    });
-  });
-
-//   Dark Mode
-
-const body = document.querySelector('body');
-const darkModeToggle = document.getElementById('darkModeToggle');
-
-// Check if dark mode is enabled
-const isDarkMode = localStorage.getItem('darkMode') === 'true';
-
-// Apply dark mode class to body if enabled
-if (isDarkMode) {
-  body.classList.add('dark-mode');
+  if (!isMovieInWatchlist) {
+    watchlist.push(movie); // Add the movie to the watchlist array
+    localStorage.setItem('watchlist', JSON.stringify(watchlist)); // Save the updated watchlist to local storage
+    alert('Movie added to watchlist!');
+  } else {
+    alert('Movie is already in the watchlist!');
+  }
 }
-
-// Toggle dark mode
-function toggleDarkMode() {
-  body.classList.toggle('dark-mode');
-  // Save the dark mode preference to local storage
-  const isDarkModeEnabled = body.classList.contains('dark-mode');
-  localStorage.setItem('darkMode', isDarkModeEnabled);
-}
-
-// Event listener for dark mode toggle button
-darkModeToggle.addEventListener('click', toggleDarkMode);
