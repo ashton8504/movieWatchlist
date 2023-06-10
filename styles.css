@@ -32,6 +32,8 @@
   .header-container {
     text-align: center;
   }
+
+
   
   .search-bar {
     display: flex;
@@ -41,7 +43,6 @@
     padding: 0;
     position: absolute;
     width: 462px;
-    height: 38px;
     left: 50%;
     transform: translateX(-50%);
     top: 189px;
@@ -70,18 +71,18 @@
     justify-content: center;
     align-items: center;
     padding: 9px 11px 9px 17px;
-    gap: 8px;
     width: 120px;
-    height: 38px;
     background: #555;
     border: 1px solid #777;
     border-radius: 0px 6px 6px 0px;
     flex: none;
     order: 1;
     align-self: stretch;
+    font-family: 'Inter', sans-serif;
     flex-grow: 0;
     transition: background-color 0.3s ease;
     color: #fff;
+    cursor: pointer;
   }
   
   .search-button:hover {
@@ -95,7 +96,7 @@
     font-style: normal;
     font-weight: 800;
     font-size: 42px;
-    color: #fff;
+    color: #ffffff;
   }
   
   .watchlist-link {
@@ -103,7 +104,7 @@
     font-family: 'Inter', sans-serif;
     font-style: normal;
     font-weight: 700;
-    font-size: 18px;
+    font-size: 23px;
     line-height: 20px;
     text-align: center;
     color: #fff;
